@@ -1,7 +1,7 @@
 require "nokogiri"
 require 'pry'
 
-# projects: kickstarter.css("li.project.grid_4").first
+# projects: kickstarter.css("li.project.grid_4")
 # title: project.css("h2.bbcard_name strong a").text
 # image link: project.css("div.project-thumbnail a img").attribute("src").value
 # description: project.css("p.bbcard_blurb").text
@@ -13,6 +13,9 @@ def create_project_hash
   kickstarter = Nokogiri::HTML(html)
 
   projects = {}
+
+  #iterate through projects in website
+  kickstarter.css("li.project.grid_4").each { |project| projects[project] = {} }
 end
 
 create_project_hash
